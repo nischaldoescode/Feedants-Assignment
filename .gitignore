@@ -1,0 +1,13 @@
+node_modules
+.env
+.env.local
+.expo
+dist
+dist-*
+coverage
+npm-debug.log*
+assignment-page-*.png
+emulator-check.png
+*.tmp
+*.png
+*.rar
