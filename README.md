@@ -9,7 +9,6 @@ The app is intentionally small, but it is not a static mock. The React Native sc
 - React Native with Expo
 - Node.js with Express
 - MongoDB with Mongoose
-- Zod validation
 - Atomic MongoDB updates for spot booking
 
 ## Project Structure
@@ -189,23 +188,11 @@ These tests cover lifecycle phase resolution, spot clamping, registered user act
 
 `npm audit --omit=dev` currently reports transitive Expo and Metro vulnerabilities. npm says the available fix requires breaking upgrades to Expo 57 and React Native 0.87. I did not force that migration because it would be a framework upgrade, not a small assignment fix. In production, I would schedule that upgrade separately and retest the native app on devices.
 
-## Screen Recording Checklist
-
-For the required recording, show:
-
-- backend running
-- seed command completed
-- mobile app loading the dynamic competition
-- registered state for `demo-user-1`
-- upload submission flow
-- refresh after submission
-- optional registration flow with `demo-user-2`
-
 ## Assumptions
 
 - Authentication is represented by the `x-user-id` header to keep the assignment focused.
 - Payment is mocked as paid on registration, but the model can support pending and failed payments.
-- The design reference is for one competition details screen, so routing is kept minimal.
+- The design reference is for one competition details screen, so routing is minimal.
 - Previous winner videos and judge video open as actions instead of playing inline.
 
 ## Major Decisions
@@ -213,14 +200,12 @@ For the required recording, show:
 - Business rules live in `backend/src/domain/competitionRules.js` so they are testable without MongoDB.
 - The API returns a complete screen payload to avoid repeated mobile requests.
 - The backend sends the main action as `viewer.primaryAction`, so frontend state cannot drift from server rules.
-- Dates in the seed are relative to the current day, keeping the demo useful after the assignment date.
 - The mobile UI is split by visible sections rather than by generic abstractions.
 
 ## Tradeoffs
 
-- MongoDB transactions are not used because local standalone MongoDB should work out of the box.
-- The atomic seat update handles the most important consistency risk. In production, a replica set transaction could wrap the competition and participation writes together.
-- Payment, auth, and media playback are mocked or represented by actions because the assignment is about the competition module.
+- MongoDB transactions are not used because local standalone MongoDB should work.
+- The atomic seat update handles the most important consistency risk. In production, a replica set transaction could help to wrap the competition and participation writes together.
 
 ## Production Improvements
 
@@ -228,5 +213,3 @@ For the required recording, show:
 - Payment provider integration and webhook based payment status updates.
 - CDN backed media uploads for submissions.
 - Admin tools for editing competition content and timelines.
-- Observability around registration conflicts and submission failures.
-- Integration tests with a test MongoDB instance.
