@@ -92,7 +92,7 @@ EXPO_PUBLIC_API_URL=http://10.0.2.2:4000/api
 - iOS simulator: Mac only, have Simulator open, then press `i` in the terminal.
 - Physical device: install the Expo Go app, then scan the QR code with it. The device and your computer must be on the same wifi network, and `EXPO_PUBLIC_API_URL` must point to your computer's LAN IP instead of localhost or 10.0.2.2, for example `http://192.168.1.5:4000/api`.
 
-Note: the physical device path is not recommended. It depends on both devices being on the same network and no firewall blocking the connection, so it does not always work. The Android emulator path above is what this project was built and tested against.
+Note: the physical device path is not recommended. tt depends on both devices being on the same network and no firewall blocking the connection, so it does not always work. the android emulator path above is what this project was built and tested in..
 
 ## Demo Users
 
